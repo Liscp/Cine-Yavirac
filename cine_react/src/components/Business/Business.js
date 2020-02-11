@@ -7,20 +7,27 @@ class Business extends React.Component{
         return(
             <div className="Business">
   <div className="image-container">
-    <img src='https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg' alt=''/>
-    <h1>{business.titulo}</h1>
+    <img src='https://www.elsoldemexico.com.mx/gossip/jlsc22-sonic-la-pelicula.jpg/ALTERNATES/LANDSCAPE_400/Sonic-La-Pelicula.jpg' alt=''/>
+    
+  
   </div>
-        
-  <h2>{business.resumen}</h2>
   <div className="Business-information">
     <div className="Business-address">
-      <p>{business.categoria}</p>
-      <p>{business.valorboleto}</p>
-      
-    </div>
+      <h3>Titulo</h3>
+  <h6>{business.titulo}</h6> 
+  <h3>Resumen</h3>
+  <h6>{business.resumen}</h6>
+  <h3>Categoria</h3>
+  <h6>{business.categoria}</h6>
+  <h3>Valor del Boleto</h3>
+  <h6>{business.valorboleto}</h6>
     
   </div>
-</div>
+  </div>
+  
+    
+  </div>
+
         )
     }
 }

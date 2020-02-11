@@ -42,3 +42,17 @@ h1 {
   font-size: 1.8rem;
   color: #fff;
 }
+h2 {
+  padding: .55rem 0;
+  text-align: center;
+  font-family: Poppins, sans-serif;
+  font-size: 1.8rem;
+  color: #fff;
+}
+/* h3 {
+  
+  text-align: center;
+
+ 
+  color: rgb(0, 0, 0);
+} */

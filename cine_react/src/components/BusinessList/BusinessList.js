@@ -9,7 +9,6 @@ import Business from '../Business/Business'
      return <Business key={business.id} business={business}/> 
      })}
              
-             
 </div>
          )
      }

@@ -2,64 +2,54 @@ import React from 'react';
 import './App.css';
 import SearchBar from '../SearchBar/SearchBar'
 import BusinessList from '../BusinessList/BusinessList'
-import Yelp from '../../until/Yelp'
+
 
 class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       businesses: [],
-
     }
-    this.searchYelp=this.searchYelp.bind(this)
-    this.obtencion=this.obtencion.bind(this)
-
+    this.getData=this.getData.bind(this)
   }
-  searchYelp(){
-    Yelp.then((businesses)=>{
-    this.setState({
-      businesses: businesses
-    })
-  })
-}
-  obtencion(){
-    Yelp.search().then((businesses)=>{
-      this.setState({
-        businesses: businesses
-      })
-    })
+  getData=async()=>{
+    const url = 'http://localhost:4000/cartelera'
+    if(this.state.businesses != []){
+      try{
+        const response = await fetch(url,{
+          method: 'GET',
+          headers:{
+            'Content-type': 'application/json'
+          }
+        })
+        console.log(response)
+        if(response.ok){
+          const jsonResponse = await response.json()
+          this.setState({
+            businesses: await jsonResponse
+          })
+          console.log(this.state.businesses)
+          
+          return jsonResponse
+        }throw new Error('Request failed!')
+      }catch(error){
+        console.log(error)
+      }
+    }
+    alert('No existe ninguna película en Cartelera por favor crea una película')
+    
+   
   }
-  // getData=async()=>{
-  //   const url = 'http://localhost:4000/cartelera'
-  //   try{
-  //     const response = await fetch(url,{
-  //       method: 'GET',
-  //       headers:{
-  //         'Content-type': 'application/json'
-  //       }
-  //     })
-  //     console.log(response)
-  //     if(response.ok){
-  //       const jsonResponse = await response.json()
-  //       business=jsonResponse
-  //       console.log(business)
-        
-  //       return jsonResponse
-  //     }throw new Error('Request failed!')
-  //   }catch(error){
-  //     console.log(error)
-  //   }
-  // }
 
   render(){
   return (
     <div className="App">
-  <h1>{this.state.titulo}</h1>
-  <SearchBar searchYelp={this.searchYelp}/>
-
-    <div className="SearchBar-submit">
-          <a onClick={this.obtencion}>Crear Peicula</a>
-  </div>
+  <h1>CINE YAVIRAC</h1>
+  <SearchBar />
+  <div className="SearchBar-submit">
+          <a onClick={this.getData}>Mostrar Cartilla</a>
+  </div >
+ 
   <BusinessList businesses={this.state.businesses}/>
   
 </div>
